@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Pricing Comparison</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        .section-card {
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .price-tag {
+            background: linear-gradient(45deg, #4158D0, #C850C0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        .header-gradient {
+            background: linear-gradient(90deg, #4158D0 0%, #C850C0 100%);
+            padding: 60px 0;
+        }
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(65, 88, 208, 0.05);
+        }
+        .note-item {
+            padding: 10px;
+            border-left: 4px solid #4158D0;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+        }
+        .section-title {
+            color: #4158D0;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .creator-footer {
+            background: linear-gradient(90deg, #4158D0 0%, #C850C0 100%);
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-gradient text-white mb-5">
+        <div class="container">
+            <h1 class="display-4 text-center animate__animated animate__fadeIn">API & Service Pricing Comparison</h1>
+            <p class="lead text-center animate__animated animate__fadeIn">Up to 10K Users</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Authentication & Identity -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Authentication & Identity</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Pricing</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Two-Factor Authentication</td>
+                            <td>Twilio Authy</td>
+                            <td class="price-tag">$0.09 per authentication</td>
+                            <td>First 100 authentications free</td>
+                        </tr>
+                        <tr>
+                            <td>Two-Factor Authentication</td>
+                            <td>Firebase Authentication</td>
+                            <td class="price-tag">Free tier up to 10K</td>
+                            <td>Includes phone & email verification</td>
+                        </tr>
+                        <tr>
+                            <td>Social Login (OAuth)</td>
+                            <td>Auth0</td>
+                            <td class="price-tag">Free up to 7K users</td>
+                            <td>$23/month for up to 10K users</td>
+                        </tr>
+                        <tr>
+                            <td>Social Login</td>
+                            <td>Firebase Authentication</td>
+                            <td class="price-tag">Free</td>
+                            <td>Included in free tier</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Location & Discovery -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Location & Discovery</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Pricing</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Proximity/Bluetooth</td>
+                            <td>Estimote</td>
+                            <td class="price-tag">$99/month</td>
+                            <td>Up to 10K beacons</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time Location Tracking</td>
+                            <td>MapBox</td>
+                            <td class="price-tag">$49/month</td>
+                            <td>Up to 100K requests</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time Location Tracking</td>
+                            <td>Google Maps Platform</td>
+                            <td class="price-tag">$200/month approx</td>
+                            <td>Based on $0.02 per API call</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Content Generation & Processing -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Content Generation & Processing</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Pricing</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DALL-E API</td>
+                            <td>OpenAI</td>
+                            <td class="price-tag">$0.02-0.04 per image</td>
+                            <td>Based on resolution</td>
+                        </tr>
+                        <tr>
+                            <td>QR Code Generation</td>
+                            <td>QR Code Generator API</td>
+                            <td class="price-tag">$49/month</td>
+                            <td>Unlimited QR codes</td>
+                        </tr>
+                        <tr>
+                            <td>AI Content Moderation</td>
+                            <td>Amazon Rekognition</td>
+                            <td class="price-tag">$1 per 1000 images</td>
+                            <td>Text moderation included</td>
+                        </tr>
+                        <tr>
+                            <td>AI Content Moderation</td>
+                            <td>Clarifai</td>
+                            <td class="price-tag">$39/month</td>
+                            <td>Up to 10K API calls</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Database & Cloud Services -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Database & Cloud Services</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Pricing</th>
+                            <th>Monthly Cost for 10K Users</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MongoDB Atlas</td>
+                            <td>MongoDB</td>
+                            <td class="price-tag">$57/month</td>
+                            <td>Shared Cluster (M0)</td>
+                        </tr>
+                        <tr>
+                            <td>Firebase Realtime DB</td>
+                            <td>Google</td>
+                            <td class="price-tag">$25/month</td>
+                            <td>Up to 20GB storage</td>
+                        </tr>
+                        <tr>
+                            <td>AWS (Basic Setup)</td>
+                            <td>Amazon</td>
+                            <td class="price-tag">$150-200/month</td>
+                            <td>Includes EC2, RDS, S3</td>
+                        </tr>
+                        <tr>
+                            <td>Google Cloud</td>
+                            <td>Google</td>
+                            <td class="price-tag">$140-180/month</td>
+                            <td>Similar configuration to AWS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Messaging -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Messaging</h2>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Pricing</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SendBird</td>
+                            <td>SendBird</td>
+                            <td class="price-tag">$399/month</td>
+                            <td>Up to 10K MAU</td>
+                        </tr>
+                        <tr>
+                            <td>PubNub</td>
+                            <td>PubNub</td>
+                            <td class="price-tag">$149/month</td>
+                            <td>Up to 10K daily active devices</td>
+                        </tr>
+                        <tr>
+                            <td>Firebase Cloud Messaging</td>
+                            <td>Google</td>
+                            <td class="price-tag">Free</td>
+                            <td>Unlimited messages</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Notes -->
+        <section class="section-card animate-fade-up">
+            <h2 class="section-title">Points to Focus</h2>
+            <div class="notes-container">
+                <div class="note-item">Prices are approximated for 10K monthly active users with average usage patterns</div>
+                <div class="note-item">AWS and Google Cloud pricing includes basic setup with minimal redundancy</div>
+                <div class="note-item">Many services offer free tiers for development and testing</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="creator-footer text-center">
+        <div class="container">
+            <h3 class="mb-0">Created by Anas Raheem</h3>
+            <small>Last Updated: January 2025</small>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
