@@ -3,78 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Pricing Comparison</title>
+    <title>Enterprise API Pricing Comparison</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        .section-card {
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --card-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .hero-section {
+            background: var(--primary-gradient);
+            padding: 120px 0 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 1.5rem auto;
+        }
+
+        .pricing-container {
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
         .section-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
+
+        .section-header {
+            background: var(--secondary-gradient);
+            padding: 20px;
+            color: white;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table th {
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .table td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+
         .price-tag {
-            background: linear-gradient(45deg, #4158D0, #C850C0);
+            font-weight: 700;
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: bold;
+            position: relative;
+            display: inline-block;
         }
-        .header-gradient {
-            background: linear-gradient(90deg, #4158D0 0%, #C850C0 100%);
-            padding: 60px 0;
+
+        .note-container {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 2rem;
         }
-        .animate-fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .table-hover tbody tr:hover {
-            background-color: rgba(65, 88, 208, 0.05);
-        }
+
         .note-item {
-            padding: 10px;
-            border-left: 4px solid #4158D0;
-            margin-bottom: 10px;
-            background-color: #f8f9fa;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #6366f1;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .section-title {
-            color: #4158D0;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .creator-footer {
-            background: linear-gradient(90deg, #4158D0 0%, #C850C0 100%);
+
+        .footer {
+            background: var(--primary-gradient);
             color: white;
-            padding: 20px 0;
-            margin-top: 50px;
+            padding: 3rem 0;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-container {
+                margin-top: -50px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header-gradient text-white mb-5">
-        <div class="container">
-            <h1 class="display-4 text-center animate__animated animate__fadeIn">API & Service Pricing Comparison</h1>
-            <p class="lead text-center animate__animated animate__fadeIn">Up to 10K Users</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title animate__animated animate__fadeIn">Enterprise API Pricing</h1>
+            <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">Comprehensive comparison of enterprise-grade API services and cloud solutions for up to 10,000 users</p>
         </div>
-    </header>
+    </section>
 
     <!-- Main Content -->
-    <div class="container">
-        <!-- Authentication & Identity -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Authentication & Identity</h2>
+    <div class="container pricing-container">
+        <!-- Authentication Section -->
+        <div class="section-card animate__animated animate__fadeInUp">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-shield-alt me-2"></i>
+                    Authentication & Identity
+                </h2>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th>Service</th>
                             <th>Provider</th>
@@ -110,14 +237,19 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
-        <!-- Location & Discovery -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Location & Discovery</h2>
+        <!-- Location Section -->
+        <div class="section-card animate__animated animate__fadeInUp">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    Location & Discovery
+                </h2>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th>Service</th>
                             <th>Provider</th>
@@ -147,14 +279,19 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
-        <!-- Content Generation & Processing -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Content Generation & Processing</h2>
+        <!-- Content Generation Section -->
+        <div class="section-card animate__animated animate__fadeInUp">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-magic me-2"></i>
+                    Content Generation & Processing
+                </h2>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th>Service</th>
                             <th>Provider</th>
@@ -190,127 +327,198 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
-        <!-- Database & Cloud Services -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Database & Cloud Services</h2>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Service</th>
-                            <th>Provider</th>
-                            <th>Pricing</th>
-                            <th>Monthly Cost for 10K Users</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MongoDB Atlas</td>
-                            <td>MongoDB</td>
-                            <td class="price-tag">$57/month</td>
-                            <td>Shared Cluster (M0)</td>
-                        </tr>
-                        <tr>
-                            <td>Firebase Realtime DB</td>
-                            <td>Google</td>
-                            <td class="price-tag">$25/month</td>
-                            <td>Up to 20GB storage</td>
-                        </tr>
-                        <tr>
-                            <td>AWS (Basic Setup)</td>
-                            <td>Amazon</td>
-                            <td class="price-tag">$150-200/month</td>
-                            <td>Includes EC2, RDS, S3</td>
-                        </tr>
-                        <tr>
-                            <td>Google Cloud</td>
-                            <td>Google</td>
-                            <td class="price-tag">$140-180/month</td>
-                            <td>Similar configuration to AWS</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Messaging -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Messaging</h2>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Service</th>
-                            <th>Provider</th>
-                            <th>Pricing</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>SendBird</td>
-                            <td>SendBird</td>
-                            <td class="price-tag">$399/month</td>
-                            <td>Up to 10K MAU</td>
-                        </tr>
-                        <tr>
-                            <td>PubNub</td>
-                            <td>PubNub</td>
-                            <td class="price-tag">$149/month</td>
-                            <td>Up to 10K daily active devices</td>
-                        </tr>
-                        <tr>
-                            <td>Firebase Cloud Messaging</td>
-                            <td>Google</td>
-                            <td class="price-tag">Free</td>
-                            <td>Unlimited messages</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Notes -->
-        <section class="section-card animate-fade-up">
-            <h2 class="section-title">Points to Focus</h2>
-            <div class="notes-container">
-                <div class="note-item">Prices are approximated for 10K monthly active users with average usage patterns</div>
-                <div class="note-item">AWS and Google Cloud pricing includes basic setup with minimal redundancy</div>
-                <div class="note-item">Many services offer free tiers for development and testing</div>
-            </div>
-        </section>
+       <!-- Database Section -->
+       <div class="section-card animate__animated animate__fadeInUp">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-database me-2"></i>
+                Database & Cloud Services
+            </h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Provider</th>
+                        <th>Pricing</th>
+                        <th>Monthly Cost for 10K Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MongoDB Atlas</td>
+                        <td>MongoDB</td>
+                        <td class="price-tag">$57/month</td>
+                        <td>Shared Cluster (M0)</td>
+                    </tr>
+                    <tr>
+                        <td>Firebase Realtime DB</td>
+                        <td>Google</td>
+                        <td class="price-tag">$25/month</td>
+                        <td>Up to 20GB storage</td>
+                    </tr>
+                    <tr>
+                        <td>AWS (Basic Setup)</td>
+                        <td>Amazon</td>
+                        <td class="price-tag">$150-200/month</td>
+                        <td>Includes EC2, RDS, S3</td>
+                    </tr>
+                    <tr>
+                        <td>Google Cloud</td>
+                        <td>Google</td>
+                        <td class="price-tag">$140-180/month</td>
+                        <td>Similar configuration to AWS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="creator-footer text-center">
-        <div class="container">
-            <h3 class="mb-0">Created by Anas Raheem</h3>
-            <small>Last Updated: January 2025</small>
+    <!-- Messaging Section -->
+    <div class="section-card animate__animated animate__fadeInUp">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-comments me-2"></i>
+                Messaging
+            </h2>
         </div>
-    </footer>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Provider</th>
+                        <th>Pricing</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SendBird</td>
+                        <td>SendBird</td>
+                        <td class="price-tag">$399/month</td>
+                        <td>Up to 10K MAU</td>
+                    </tr>
+                    <tr>
+                        <td>PubNub</td>
+                        <td>PubNub</td>
+                        <td class="price-tag">$149/month</td>
+                        <td>Up to 10K daily active devices</td>
+                    </tr>
+                    <tr>
+                        <td>Firebase Cloud Messaging</td>
+                        <td>Google</td>
+                        <td class="price-tag">Free</td>
+                        <td>Unlimited messages</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    <!-- Notes Section -->
+    <div class="section-card animate__animated animate__fadeInUp">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-sticky-note me-2"></i>
+                Important Notes
+            </h2>
+        </div>
+        <div class="p-4">
+            <div class="note-container">
+                <div class="note-item">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Prices are approximated for 10K monthly active users with average usage patterns
+                </div>
+                <div class="note-item">
+                    <i class="fas fa-server me-2"></i>
+                    AWS and Google Cloud pricing includes basic setup with minimal redundancy
+                </div>
+                <div class="note-item">
+                    <i class="fas fa-dollar-sign me-2"></i>
+                    All prices are in USD and subject to change
+                </div>
+                <div class="note-item">
+                    <i class="fas fa-code me-2"></i>
+                    Many services offer free tiers for development and testing
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <h3 class="mb-2">Created by Anas Raheem</h3>
+            <p class="mb-0">Last Updated: January 2025</p>
+            <div class="mt-3">
+                <i class="fas fa-code me-2"></i>
+                Built with modern web technologies
+            </div>
+        </div>
+    </div>
+</footer>
 
-        document.querySelectorAll('.section-card').forEach(card => {
-            observer.observe(card);
+<!-- Scroll to Top Button -->
+<div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate__fadeInUp');
+                entry.target.style.opacity = '1';
+            }
         });
-    </script>
+    }, observerOptions);
+
+    document.querySelectorAll('.section-card').forEach(card => {
+        card.style.opacity = '0';
+        observer.observe(card);
+    });
+
+    // Scroll to Top functionality
+    const scrollTop = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTop.classList.add('visible');
+        } else {
+            scrollTop.classList.remove('visible');
+        }
+    });
+
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add smooth scroll behavior to all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 </body>
 </html>
